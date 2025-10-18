@@ -1,0 +1,67 @@
+# CollegiumAI API Server Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core FastAPI framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Authentication and security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Rate limiting and middleware
+slowapi==0.1.9
+starlette-exporter==0.17.1
+
+# GraphQL support
+strawberry-graphql[fastapi]==0.214.1
+
+# Database and ORM (for future use)
+sqlalchemy==2.0.23
+alembic==1.12.1
+asyncpg==0.29.0  # PostgreSQL async driver
+aiomysql==0.2.0  # MySQL async driver
+
+# Redis for caching and sessions
+redis==5.0.1
+aioredis==2.0.1
+
+# Blockchain integration
+web3==6.11.3
+eth-account==0.9.0
+
+# Data validation and serialization
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# HTTP client for external APIs
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Monitoring and logging
+prometheus-client==0.19.0
+structlog==23.2.0
+
+# Configuration and environment
+python-dotenv==1.0.0
+pyyaml==6.0.1
+
+# Testing (development)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx[cli]==0.25.2  # For testing HTTP endpoints
+
+# Documentation
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+
+# Development tools
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Production WSGI server
+gunicorn==21.2.0
