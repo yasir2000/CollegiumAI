@@ -1,0 +1,102 @@
+[
+  {
+    "request": "I'm struggling with my calculus homework, specifically with derivatives. Can you help me understand the chain rule?",
+    "persona_type": "undergrad_student",
+    "context": {
+      "subject": "mathematics",
+      "difficulty": "intermediate",
+      "urgency": "medium"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "I need help designing my thesis research methodology. I'm studying the impact of AI on student learning outcomes.",
+    "persona_type": "grad_student",
+    "context": {
+      "subject": "education_research",
+      "difficulty": "advanced",
+      "urgency": "high"
+    },
+    "use_multi_agent": true
+  },
+  {
+    "request": "I'm feeling overwhelmed with my course load and part-time job. How can I better manage my time and stress?",
+    "persona_type": "undergrad_student",
+    "context": {
+      "subject": "wellness",
+      "difficulty": "personal",
+      "urgency": "high"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "How do I develop an effective curriculum for my new course on data science ethics?",
+    "persona_type": "professor",
+    "context": {
+      "subject": "curriculum_design",
+      "difficulty": "expert",
+      "urgency": "medium"
+    },
+    "use_multi_agent": true
+  },
+  {
+    "request": "I need guidance on choosing the right graduate program for my career goals in artificial intelligence.",
+    "persona_type": "undergrad_student",
+    "context": {
+      "subject": "academic_planning",
+      "difficulty": "advanced",
+      "urgency": "medium"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "My student seems to be struggling with research skills. What strategies can I recommend to help them improve?",
+    "persona_type": "academic_advisor",
+    "context": {
+      "subject": "student_support",
+      "difficulty": "intermediate",
+      "urgency": "medium"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "I'm having trouble with my data analysis for my psychology experiment. The statistical results don't make sense.",
+    "persona_type": "grad_student",
+    "context": {
+      "subject": "statistics",
+      "difficulty": "advanced",
+      "urgency": "high"
+    },
+    "use_multi_agent": true
+  },
+  {
+    "request": "How can I make my lectures more engaging for large undergraduate classes?",
+    "persona_type": "professor",
+    "context": {
+      "subject": "pedagogy",
+      "difficulty": "intermediate",
+      "urgency": "medium"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "I need help preparing for my comprehensive exams. What's the best study strategy?",
+    "persona_type": "grad_student",
+    "context": {
+      "subject": "exam_preparation",
+      "difficulty": "advanced",
+      "urgency": "high"
+    },
+    "use_multi_agent": false
+  },
+  {
+    "request": "I'm considering changing my major from biology to computer science. What factors should I consider?",
+    "persona_type": "undergrad_student",
+    "context": {
+      "subject": "academic_planning",
+      "difficulty": "intermediate",
+      "urgency": "medium"
+    },
+    "use_multi_agent": true
+  }
+]
