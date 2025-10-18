@@ -48,9 +48,23 @@ def parse_arguments():
     
     parser.add_argument(
         '--scenario',
-        type=str,
-        choices=['global_mobility_program', 'research_excellence_network', 'adaptive_learning_ecosystem'],
-        help='Run specific scenario only (default: run all scenarios)'
+        choices=[
+            'comprehensive',
+            'student_enrollment', 
+            'research_collaboration',
+            'content_governance',
+            'university_partnership',
+            'test_validation',
+            'interactive'
+        ],
+        default='comprehensive',
+        help='Specific scenario to run (default: comprehensive)'
+    )
+    
+    parser.add_argument(
+        '--test-mode',
+        action='store_true',
+        help='Run in test validation mode'
     )
     
     parser.add_argument(
@@ -58,12 +72,6 @@ def parse_arguments():
         type=Path,
         default=Path('./results'),
         help='Directory to save results (default: ./results)'
-    )
-    
-    parser.add_argument(
-        '--verbose',
-        action='store_true',
-        help='Enable verbose output'
     )
     
     return parser.parse_args()
@@ -315,6 +323,53 @@ async def main():
             traceback.print_exc()
         sys.exit(1)
 
+async def run_enhanced_demo(scenario: str = 'comprehensive'):
+    """Enhanced demo runner with complete integration support"""
+    
+    print("🚀 CollegiumAI Enhanced Integration Demo")
+    print("=" * 50)
+    
+    try:
+        # Import our complete integration demo
+        from examples.integration.complete_integration_demo import (
+            run_comprehensive_demo, run_individual_scenario_demo, ScenarioType
+        )
+        
+        scenario_mapping = {
+            'comprehensive': ScenarioType.COMPREHENSIVE_DEMO,
+            'enrollment': ScenarioType.STUDENT_ENROLLMENT,
+            'research': ScenarioType.RESEARCH_COLLABORATION,
+            'content': ScenarioType.CONTENT_GOVERNANCE,
+            'partnership': ScenarioType.UNIVERSITY_PARTNERSHIP
+        }
+        
+        if scenario == 'comprehensive':
+            print("🎯 Running Complete System Integration Demo")
+            await run_comprehensive_demo()
+        elif scenario in scenario_mapping:
+            print(f"🎯 Running {scenario.title()} Scenario Demo")
+            await run_individual_scenario_demo(scenario_mapping[scenario])
+        else:
+            print("🎯 Running Default Comprehensive Demo")
+            await run_comprehensive_demo()
+            
+        print("\n✅ Enhanced demo completed successfully!")
+        
+    except ImportError as e:
+        print(f"⚠️  Complete integration demo not available: {e}")
+        print("🔄 Falling back to standard demo...")
+        await main()
+    except Exception as e:
+        print(f"❌ Enhanced demo failed: {e}")
+        raise
+
 if __name__ == "__main__":
-    # Run the demonstration
-    asyncio.run(main())
+    import sys
+    
+    # Check if enhanced demo is requested
+    if len(sys.argv) > 1 and sys.argv[1] in ['enhanced', 'complete', 'full']:
+        scenario = sys.argv[2] if len(sys.argv) > 2 else 'comprehensive'
+        asyncio.run(run_enhanced_demo(scenario))
+    else:
+        # Run standard demo
+        asyncio.run(main())
