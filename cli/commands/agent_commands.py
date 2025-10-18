@@ -112,10 +112,11 @@ def list_agents(ctx, detailed, status):
                 'error': 'red'
             }.get(agent['status'], 'white')
             
+            status_styled = click.style(agent['status'], fg=status_color)
             click.echo(
                 f"{agent['id']:<20} "
                 f"{agent['name']:<25} "
-                f"{click.style(agent['status']:<10, fg=status_color)} "
+                f"{status_styled:<10} "
                 f"{agent['llm_provider']:<12} "
                 f"{agent['success_rate']:.1%}"
             )
