@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""
+CollegiumAI CLI Launcher
+=======================
+
+Main launcher for the CollegiumAI command-line interface.
+"""
+
+import sys
+import os
+from pathlib import Path
+
+# Add project root to path and change directory
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
+os.chdir(project_root)
+
+# Direct import from the simple CLI file
+if __name__ == '__main__':
+    # Execute the simple CLI directly
+    exec(open('cli/simple_cli.py').read())

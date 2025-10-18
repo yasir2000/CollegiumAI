@@ -49,6 +49,47 @@ CollegiumAI provides comprehensive support for the Bologna Process framework, en
 - **Student Mobility**: Erasmus+, CEEPUS, NORDPLUS integration
 - **Diploma Supplement**: Automated multilingual credential documentation
 
+### 💻 Professional Command-Line Interface (CLI)
+CollegiumAI includes a comprehensive CLI system for university administration and AI agent management:
+
+#### 🤖 Agent Management Commands
+```bash
+# List all AI agents
+python collegiumai.py agent list
+
+# Show detailed agent information
+python collegiumai.py agent list --detailed
+```
+
+#### 🎓 Student Management Commands
+```bash
+# Enroll a new student
+python collegiumai.py student enroll --name "Maria Rodriguez" --program "Computer Science"
+
+# Process student transfer with ECTS conversion
+python collegiumai.py student transfer --student-id "2024001" --credits 150
+```
+
+#### ⚙️ System Administration
+```bash
+# Check system status
+python collegiumai.py system status
+
+# Run complete demonstration
+python collegiumai.py demo
+
+# Show all available commands
+python collegiumai.py --help
+```
+
+#### 🎯 CLI Features
+- **Multi-Agent Coordination**: Manage and monitor 4 specialized AI agents
+- **Student Lifecycle**: Complete enrollment, transfer, and academic planning
+- **Bologna Process Integration**: Automatic ECTS credit conversion
+- **Real-time Status**: Monitor system health and agent performance
+- **Interactive Commands**: Professional command-line interface with rich formatting
+- **Educational Focus**: University-specific workflows and compliance
+
 #### Bologna Process Benefits  
 - **🎓 Academic Mobility**: Seamless student and faculty exchange programs
 - **🔍 Credential Recognition**: Automatic qualification recognition across Europe

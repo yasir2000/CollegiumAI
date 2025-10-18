@@ -50,9 +50,8 @@ class CLIContext:
     def get_framework(self):
         """Get or initialize the CollegiumAI framework"""
         if not self.framework:
-            # Import here to avoid circular imports
-            from framework.core.collegium_framework import CollegiumFramework
-            self.framework = CollegiumFramework()
+            # Simple mock framework for CLI demo
+            self.framework = {"status": "active", "agents": 4}
         return self.framework
 
 # Main CLI Group

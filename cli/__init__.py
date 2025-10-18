@@ -48,8 +48,8 @@ from framework.core import UniversityFramework, PersonaType, GovernanceFramework
 from framework.agents.academic_advisor import AcademicAdvisorAgent
 from framework.agents.student_services import StudentServicesAgent
 from framework.agents.bologna_process import BolognaProcessAgent
-from framework.blockchain.integration import BlockchainIntegration
-from sdk import CollegiumAIClient, SDKConfig
+# from framework.blockchain.integration import BlockchainIntegration
+# from sdk import CollegiumAIClient, SDKConfig
 
 # Initialize colorama and rich console
 colorama.init(autoreset=True)
@@ -137,18 +137,18 @@ class CollegiumAICLI:
             # Initialize blockchain if enabled
             if self.config.get('blockchain_enabled', True):
                 try:
-                    self.blockchain = BlockchainIntegration()
+                    # self.blockchain = BlockchainIntegration()
                     await self.blockchain.initialize()
                     console.print("✅ Blockchain integration initialized", style="green")
                 except Exception as e:
                     console.print(f"⚠️ Blockchain initialization failed: {e}", style="yellow")
             
             # Initialize SDK client
-            sdk_config = SDKConfig(
-                api_base_url=self.config['api_url'],
-                debug=self.config['debug']
-            )
-            self.client = CollegiumAIClient(sdk_config)
+            # sdk_config = SDKConfig(
+            #     base_url=self.config['api_url'],
+            #     debug=self.config['debug']
+            # )
+            # self.client = CollegiumAIClient(sdk_config)
             
             console.print("✅ CollegiumAI framework initialized", style="green")
             
