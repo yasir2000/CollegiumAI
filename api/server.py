@@ -276,11 +276,13 @@ async def startup_event():
         # Initialize university framework
         university_context = UniversityContext(
             institution_name="CollegiumAI Demo University",
-            establishment_date=datetime(1965, 9, 1),
-            location={"city": "Tech City", "state": "California", "country": "USA"},
-            total_students=25000,
-            total_faculty=1200,
-            total_staff=800
+            accreditations=[],
+            student_population=25000,
+            academic_programs=["Computer Science", "Engineering", "Business", "Liberal Arts"],
+            current_semester="Fall 2025",
+            academic_year="2025-2026",
+            policies={"academic_integrity": "strict", "attendance": "required"},
+            systems={"lms": "active", "grading": "active"}
         )
         
         university_framework = UniversityFramework(university_context)
