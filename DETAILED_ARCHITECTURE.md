@@ -313,33 +313,33 @@ graph TB
 
 ```mermaid
 graph LR
-    subgraph "💻 Development"
+    subgraph DEVELOPMENT ["💻 Development"]
         DEV_ENV[👨‍💻 Developer<br/>Local environment]
         GIT_REPO[📁 Git Repository<br/>Source code management]
         FEATURE_BRANCH[🌿 Feature Branch<br/>Development isolation]
     end
 
-    subgraph "🔍 Quality Assurance"
+    subgraph QA ["🔍 Quality Assurance"]
         UNIT_TESTS[🧪 Unit Tests<br/>Code validation]
         INTEGRATION_TESTS[🔗 Integration Tests<br/>Component interaction]
         SECURITY_SCAN[🔒 Security Scanning<br/>Vulnerability detection]
         CODE_REVIEW[👥 Code Review<br/>Peer validation]
     end
 
-    subgraph "🏗️ Build & Package"
+    subgraph BUILD ["🏗️ Build & Package"]
         CI_PIPELINE[⚙️ CI Pipeline<br/>Automated build]
         DOCKER_BUILD[🐳 Docker Build<br/>Container creation]
         IMAGE_REGISTRY[📦 Container Registry<br/>Image storage]
         HELM_CHARTS[⛵ Helm Charts<br/>Kubernetes deployment]
     end
 
-    subgraph "🚀 Deployment Environments"
+    subgraph DEPLOYMENT ["🚀 Deployment Environments"]
         STAGING[🎭 Staging Environment<br/>Pre-production testing]
         PRODUCTION[🏭 Production Environment<br/>Live system]
         MONITORING[📊 Monitoring<br/>Health & performance]
     end
 
-    subgraph "🔄 Operations"
+    subgraph OPERATIONS ["🔄 Operations"]
         LOG_AGGREGATION[📝 Log Aggregation<br/>Centralized logging]
         ALERTING[🚨 Alerting<br/>Issue notification]
         BACKUP[💾 Backup<br/>Data protection]
