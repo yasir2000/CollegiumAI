@@ -4,48 +4,48 @@
 
 ```mermaid
 graph TB
-    subgraph "🎭 Persona Ecosystem"
-        subgraph "👨‍🎓 Student Persona"
-            S_TRAITS[Empathetic, Peer-oriented, Supportive]
-            S_KNOWLEDGE[Study techniques, Campus life, Resources]
-            S_RESPONSES[Encouraging, Relatable, Practical]
+    subgraph PERSONAS ["🎭 Persona Ecosystem"]
+        subgraph STUDENT ["👨‍🎓 Student Persona"]
+            S_TRAITS["Empathetic, Peer-oriented, Supportive"]
+            S_KNOWLEDGE["Study techniques, Campus life, Resources"]
+            S_RESPONSES["Encouraging, Relatable, Practical"]
         end
         
-        subgraph "👨‍🏫 Tutor Persona"
-            T_TRAITS[Patient, Adaptive, Pedagogical]
-            T_KNOWLEDGE[Subject expertise, Learning theory, Assessment]
-            T_RESPONSES[Structured, Progressive, Reinforcing]
+        subgraph TUTOR ["👨‍🏫 Tutor Persona"]
+            T_TRAITS["Patient, Adaptive, Pedagogical"]
+            T_KNOWLEDGE["Subject expertise, Learning theory, Assessment"]
+            T_RESPONSES["Structured, Progressive, Reinforcing"]
         end
         
-        subgraph "🔬 Research Persona"
-            R_TRAITS[Analytical, Thorough, Methodical]
-            R_KNOWLEDGE[Research methods, Citations, Data analysis]
-            R_RESPONSES[Evidence-based, Detailed, Academic]
+        subgraph RESEARCH ["🔬 Research Persona"]
+            R_TRAITS["Analytical, Thorough, Methodical"]
+            R_KNOWLEDGE["Research methods, Citations, Data analysis"]
+            R_RESPONSES["Evidence-based, Detailed, Academic"]
         end
         
-        subgraph "🎨 Creative Persona"
-            C_TRAITS[Innovative, Artistic, Inspirational]
-            C_KNOWLEDGE[Design thinking, Brainstorming, Innovation]
-            C_RESPONSES[Original, Imaginative, Motivating]
+        subgraph CREATIVE ["🎨 Creative Persona"]
+            C_TRAITS["Innovative, Artistic, Inspirational"]
+            C_KNOWLEDGE["Design thinking, Brainstorming, Innovation"]
+            C_RESPONSES["Original, Imaginative, Motivating"]
         end
     end
 
-    subgraph "🧠 Cognitive Processing Pipeline"
-        INPUT[📥 User Input]
-        CONTEXT_ANALYSIS[🔍 Context Analysis<br/>Intent, Emotion, Domain]
-        PERSONA_SELECTION[🎭 Persona Selection<br/>Best fit for request]
-        MEMORY_RETRIEVAL[🧵 Memory Retrieval<br/>Relevant experiences]
-        REASONING[🤔 Reasoning Engine<br/>Problem solving logic]
-        RESPONSE_GENERATION[💬 Response Generation<br/>Persona-appropriate output]
-        MEMORY_STORAGE[💾 Memory Storage<br/>Experience consolidation]
-        OUTPUT[📤 Generated Response]
+    subgraph PIPELINE ["🧠 Cognitive Processing Pipeline"]
+        INPUT["📥 User Input"]
+        CONTEXT_ANALYSIS["🔍 Context Analysis<br/>Intent, Emotion, Domain"]
+        PERSONA_SELECTION["🎭 Persona Selection<br/>Best fit for request"]
+        MEMORY_RETRIEVAL["🧵 Memory Retrieval<br/>Relevant experiences"]
+        REASONING["🤔 Reasoning Engine<br/>Problem solving logic"]
+        RESPONSE_GENERATION["💬 Response Generation<br/>Persona-appropriate output"]
+        MEMORY_STORAGE["💾 Memory Storage<br/>Experience consolidation"]
+        OUTPUT["📤 Generated Response"]
     end
 
-    subgraph "🧵 Memory Architecture"
-        subgraph "📚 Episodic Memory"
-            CONVERSATIONS[Past conversations]
-            INTERACTIONS[User interactions]
-            CONTEXTS[Situational contexts]
+    subgraph MEMORY_ARCH ["🧵 Memory Architecture"]
+        subgraph EPISODIC ["📚 Episodic Memory"]
+            CONVERSATIONS["Past conversations"]
+            INTERACTIONS["User interactions"]
+            CONTEXTS["Situational contexts"]
         end
         
         subgraph "🎓 Semantic Memory"
