@@ -1,0 +1,43 @@
+{
+  "providers": {
+    "openai": {
+      "api_key": "${OPENAI_API_KEY}",
+      "models": [
+        "gpt-4",
+        "gpt-3.5-turbo"
+      ],
+      "enabled": true
+    },
+    "anthropic": {
+      "api_key": "${ANTHROPIC_API_KEY}",
+      "models": [
+        "claude-3-sonnet",
+        "claude-3-haiku"
+      ],
+      "enabled": true
+    },
+    "ollama": {
+      "host": "http://localhost:11434",
+      "models": [
+        "llama2",
+        "mistral",
+        "codellama"
+      ],
+      "enabled": true,
+      "fallback_mode": true
+    },
+    "google": {
+      "api_key": "${GOOGLE_API_KEY}",
+      "models": [
+        "gemini-pro"
+      ],
+      "enabled": true
+    }
+  },
+  "default_provider": "ollama",
+  "fallback_chain": [
+    "ollama",
+    "openai",
+    "anthropic"
+  ]
+}

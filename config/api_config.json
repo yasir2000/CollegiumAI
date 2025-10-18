@@ -1,0 +1,20 @@
+{
+  "features": {
+    "authentication": true,
+    "rate_limiting": true,
+    "cors": true,
+    "websockets": true,
+    "file_upload": true,
+    "streaming": true
+  },
+  "limits": {
+    "requests_per_minute": 60,
+    "max_request_size": "10MB",
+    "concurrent_connections": 100
+  },
+  "security": {
+    "jwt_secret": "your-secret-key-here",
+    "password_hashing": "bcrypt",
+    "ssl_redirect": true
+  }
+}
