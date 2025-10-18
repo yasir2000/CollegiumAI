@@ -1,0 +1,154 @@
+version: '3.8'
+
+services:
+  # CollegiumAI Application
+  collegiumai:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: collegiumai-app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://collegiumai:collegiumai_pass@db:5432/collegiumai
+      - REDIS_URL=redis://redis:6379/0
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - MAX_CONCURRENT_REQUESTS=15
+      - SESSION_TIMEOUT=7200
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./backups:/app/backups
+      - ./config:/app/config
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=10)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: collegiumai-db
+    environment:
+      POSTGRES_DATABASE: collegiumai
+      POSTGRES_USER: collegiumai
+      POSTGRES_PASSWORD: collegiumai_pass
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U collegiumai -d collegiumai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: collegiumai-redis
+    command: redis-server --appendonly yes --requirepass redis_pass
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "redis_pass", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: collegiumai-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - collegiumai
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+
+  # Monitoring - Prometheus (Optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: collegiumai-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+    profiles:
+      - monitoring
+
+  # Monitoring - Grafana (Optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: collegiumai-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - collegiumai-network
+    profiles:
+      - monitoring
+
+# Networks
+networks:
+  collegiumai-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# Volumes
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
