@@ -11,11 +11,13 @@ from .research_collaboration_system import ResearchCollaborationSystem
 from .content_governance_pipeline import ContentGovernancePipeline
 from .multi_university_partnership import MultiUniversityPartnership
 from .autonomous_agent_orchestrator import AutonomousAgentOrchestrator
+from .comprehensive_integration_demo import ComprehensiveIntegrationDemo
 
 __all__ = [
     'StudentEnrollmentWorkflow',
     'ResearchCollaborationSystem', 
     'ContentGovernancePipeline',
     'MultiUniversityPartnership',
-    'AutonomousAgentOrchestrator'
+    'AutonomousAgentOrchestrator',
+    'ComprehensiveIntegrationDemo'
 ]
