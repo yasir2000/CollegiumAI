@@ -230,39 +230,39 @@ graph TB
 
 ```mermaid
 graph TB
-    subgraph "🌍 External Layer"
+    subgraph EXTERNAL ["🌍 External Layer"]
         CLIENT_WEB[🌐 Web Clients<br/>React, Vue, Angular]
         CLIENT_MOBILE[📱 Mobile Apps<br/>iOS, Android]
         CLIENT_API[🔌 API Clients<br/>Third-party integrations]
     end
 
-    subgraph "🚪 Gateway & Load Balancing"
+    subgraph GATEWAY ["🚪 Gateway & Load Balancing"]
         DNS[🌐 DNS Resolution<br/>Service discovery]
         LOAD_BALANCER[⚖️ Load Balancer<br/>Traffic distribution]
         API_GATEWAY[🚪 API Gateway<br/>Request routing & transformation]
     end
 
-    subgraph "🔒 Security Perimeter"
+    subgraph SECURITY ["🔒 Security Perimeter"]
         WAF[🛡️ Web Application Firewall<br/>Attack prevention]
         DDoS_PROTECTION[🛡️ DDoS Protection<br/>Rate limiting & throttling]
         SSL_TERMINATION[🔐 SSL/TLS Termination<br/>Certificate management]
     end
 
-    subgraph "🔑 Authentication & Authorization"
+    subgraph AUTH ["🔑 Authentication & Authorization"]
         AUTH_SERVICE[🔑 Authentication Service<br/>User identity verification]
         JWT_HANDLER[🎟️ JWT Token Handler<br/>Stateless authentication]
         RBAC[👮 Role-Based Access Control<br/>Permission management]
         OAUTH_PROVIDER[🔗 OAuth Provider<br/>Third-party auth integration]
     end
 
-    subgraph "📊 API Management"
+    subgraph API_MGMT ["📊 API Management"]
         RATE_LIMITING[⚡ Rate Limiting<br/>Request throttling]
         API_VERSIONING[🔢 API Versioning<br/>Backward compatibility]
         REQUEST_VALIDATION[✅ Request Validation<br/>Input sanitization]
         RESPONSE_CACHING[💨 Response Caching<br/>Performance optimization]
     end
 
-    subgraph "🏗️ Backend Services"
+    subgraph BACKEND ["🏗️ Backend Services"]
         FASTAPI_CLUSTER[🚀 FastAPI Cluster<br/>Multiple service instances]
         WEBSOCKET_SERVICE[📡 WebSocket Service<br/>Real-time communication]
         BACKGROUND_TASKS[⚙️ Background Tasks<br/>Async job processing]
