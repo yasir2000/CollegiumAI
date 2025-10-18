@@ -42,19 +42,19 @@ graph TB
     end
 
     subgraph MEMORY_ARCH ["🧵 Memory Architecture"]
-        subgraph EPISODIC ["📚 Episodic Memory"]
-            CONVERSATIONS["Past conversations"]
-            INTERACTIONS["User interactions"]
-            CONTEXTS["Situational contexts"]
+        subgraph EPISODIC ["� Episodic Memory"]
+            CONVERSATIONS[Past conversations]
+            INTERACTIONS[User interactions]
+            CONTEXTS[Situational contexts]
         end
         
-        subgraph "🎓 Semantic Memory"
+        subgraph SEMANTIC ["🎓 Semantic Memory"]
             FACTS[Academic facts]
             CONCEPTS[Domain concepts]
             RELATIONSHIPS[Knowledge relationships]
         end
         
-        subgraph "⚡ Procedural Memory"
+        subgraph PROCEDURAL ["⚡ Procedural Memory"]
             SKILLS[Learned skills]
             PROCEDURES[Step-by-step processes]
             PATTERNS[Behavioral patterns]
@@ -87,33 +87,33 @@ graph TB
 
 ```mermaid
 graph TB
-    subgraph "🎼 Orchestration Layer"
+    subgraph ORCHESTRATION ["🎼 Orchestration Layer"]
         COORDINATOR[🎯 Task Coordinator<br/>Central command & control]
         SCHEDULER[📅 Task Scheduler<br/>Priority & timing management]
         RESOURCE_MGR[📊 Resource Manager<br/>Agent allocation & load balancing]
     end
 
-    subgraph "🔄 Communication Layer"
+    subgraph COMMUNICATION ["🔄 Communication Layer"]
         MESSAGE_BUS[📨 Message Bus<br/>Inter-agent communication]
         EVENT_STREAM[🌊 Event Stream<br/>Real-time event processing]
         CONSENSUS_ENGINE[🤝 Consensus Engine<br/>Decision agreement protocol]
     end
 
-    subgraph "🏃‍♂️ Active Agents"
+    subgraph AGENTS ["🏃‍♂️ Active Agents"]
         AGENT_1[🤖 Agent 1<br/>Research Task]
         AGENT_2[🤖 Agent 2<br/>Content Generation]
         AGENT_3[🤖 Agent 3<br/>Quality Review]
         AGENT_POOL[🏊‍♂️ Agent Pool<br/>Available agents]
     end
 
-    subgraph "📋 Task Management"
+    subgraph TASKS ["📋 Task Management"]
         TASK_QUEUE[📥 Task Queue<br/>Pending tasks]
         ACTIVE_TASKS[⚡ Active Tasks<br/>In-progress work]
         COMPLETED_TASKS[✅ Completed Tasks<br/>Finished work]
         FAILED_TASKS[❌ Failed Tasks<br/>Error handling]
     end
 
-    subgraph "🔍 Monitoring & Control"
+    subgraph MONITORING ["🔍 Monitoring & Control"]
         PERFORMANCE_MONITOR[📈 Performance Monitor<br/>Agent efficiency tracking]
         HEALTH_CHECK[🏥 Health Checker<br/>Agent status monitoring]
         LOAD_BALANCER[⚖️ Load Balancer<br/>Work distribution]
@@ -153,43 +153,43 @@ graph TB
 
 ```mermaid
 graph TB
-    subgraph "📊 Data Access Layer"
+    subgraph DATA_ACCESS ["📊 Data Access Layer"]
         DAO[🔌 Data Access Objects<br/>Database abstraction]
         REPOSITORY[📚 Repository Pattern<br/>Domain-specific queries]
         ORM[🔗 ORM Layer<br/>Object-relational mapping]
     end
 
-    subgraph "💾 In-Memory Services"
+    subgraph MEMORY_SERVICES ["💾 In-Memory Services"]
         MEMORY_SERVICE[🧠 Cognitive Memory Service<br/>Fast memory operations]
         SESSION_SERVICE[🔄 Session Service<br/>User state management]
         CACHE_SERVICE[⚡ Caching Service<br/>High-speed data access]
         ANALYTICS_SERVICE[📊 Analytics Service<br/>Real-time metrics]
     end
 
-    subgraph "🐳 Persistent Storage"
-        subgraph "🐘 PostgreSQL Cluster"
+    subgraph STORAGE ["🐳 Persistent Storage"]
+        subgraph POSTGRESQL ["🐘 PostgreSQL Cluster"]
             PG_PRIMARY[Primary DB<br/>Read/Write operations]
             PG_REPLICA[Replica DB<br/>Read operations]
         end
         
-        subgraph "🔴 Redis Cluster"
+        subgraph REDIS ["🔴 Redis Cluster"]
             REDIS_CACHE[Cache Layer<br/>Session & temp data]
             REDIS_PUBSUB[Pub/Sub<br/>Real-time messaging]
         end
         
-        subgraph "🍃 MongoDB Cluster"
+        subgraph MONGODB ["🍃 MongoDB Cluster"]
             MONGO_DOCS[Document Store<br/>Unstructured data]
             MONGO_LOGS[Log Collection<br/>System logs]
         end
     end
 
-    subgraph "🔄 Data Processing Pipeline"
+    subgraph PIPELINE ["🔄 Data Processing Pipeline"]
         ETL[🔄 ETL Pipeline<br/>Extract, Transform, Load]
         STREAM_PROCESSOR[🌊 Stream Processor<br/>Real-time data processing]
         BATCH_PROCESSOR[📦 Batch Processor<br/>Scheduled data processing]
     end
 
-    subgraph "📈 Analytics & Reporting"
+    subgraph ANALYTICS ["📈 Analytics & Reporting"]
         METRICS_COLLECTOR[📊 Metrics Collector<br/>Performance data]
         REPORT_GENERATOR[📋 Report Generator<br/>Automated reports]
         DASHBOARD[📱 Analytics Dashboard<br/>Real-time visualization]
