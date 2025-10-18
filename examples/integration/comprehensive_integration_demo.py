@@ -13,7 +13,15 @@ from pathlib import Path
 import asyncio
 import json
 
-from .autonomous_agent_orchestrator import AutonomousAgentOrchestrator, ReasoningStrategy, DecisionFramework
+from .autonomous_agent_orchestrator import (
+    AutonomousAgentOrchestrator, ReasoningStrategy, DecisionFramework,
+    CollaborationPattern, ReasoningContext
+)
+
+# Import LLM framework for enhanced AI capabilities
+from framework.llm import (
+    LLMManager, LLMRequest, LLMMessage, ModelSelection, ModelCapability
+)
 from .student_enrollment_workflow import StudentEnrollmentWorkflow
 from .research_collaboration_system import ResearchCollaborationSystem
 from .content_governance_pipeline import ContentGovernancePipeline
@@ -42,6 +50,9 @@ class ComprehensiveIntegrationDemo:
     
     def __init__(self, config_path: Path):
         self.config_path = config_path
+        
+        # Initialize LLM manager for multi-provider AI capabilities
+        self.llm_manager = LLMManager(config_path / "llm-config.yaml")
         
         # Initialize all integration systems
         self.agent_orchestrator = AutonomousAgentOrchestrator(config_path / "agents")

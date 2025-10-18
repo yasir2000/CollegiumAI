@@ -207,6 +207,7 @@ from .commands.system import system
 from .commands.governance import governance
 from .commands.bologna import bologna
 from .commands.dev import dev
+from .commands.llm import llm
 
 # Register command groups
 main.add_command(agent)
@@ -215,6 +216,7 @@ main.add_command(system)
 main.add_command(governance)
 main.add_command(bologna)
 main.add_command(dev)
+main.add_command(llm)
 
 @main.command()
 @click.option('--key', help='Configuration key to set')

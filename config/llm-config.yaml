@@ -1,0 +1,245 @@
+# CollegiumAI LLM Provider Configuration
+# =====================================
+
+providers:
+  # OpenAI Configuration
+  openai:
+    config:
+      api_key: "${OPENAI_API_KEY}"
+      organization: "${OPENAI_ORG_ID:}"  # Optional
+      base_url: "${OPENAI_BASE_URL:https://api.openai.com/v1}"  # Optional
+    priority: 3
+    enabled: true
+    max_requests_per_minute: 60
+    max_tokens_per_minute: 40000
+    fallback_providers: ["anthropic", "ollama"]
+
+  # Anthropic Claude Configuration  
+  anthropic:
+    config:
+      api_key: "${ANTHROPIC_API_KEY}"
+      base_url: "${ANTHROPIC_BASE_URL:https://api.anthropic.com}"  # Optional
+    priority: 2
+    enabled: true
+    max_requests_per_minute: 50
+    max_tokens_per_minute: 30000
+    fallback_providers: ["openai", "ollama"]
+
+  # Local Ollama Configuration
+  ollama:
+    config:
+      base_url: "${OLLAMA_BASE_URL:http://localhost:11434}"
+      timeout: 60
+    priority: 1
+    enabled: true
+    max_requests_per_minute: 100
+    max_tokens_per_minute: 50000
+    fallback_providers: ["openai", "anthropic"]
+
+  # Google Gemini Configuration (Future)
+  google:
+    config:
+      api_key: "${GOOGLE_API_KEY}"
+      project_id: "${GOOGLE_PROJECT_ID:}"
+    priority: 2
+    enabled: false
+    max_requests_per_minute: 60
+    max_tokens_per_minute: 32000
+    fallback_providers: ["openai", "anthropic"]
+
+  # Azure OpenAI Configuration (Future)
+  azure_openai:
+    config:
+      api_key: "${AZURE_OPENAI_API_KEY}"
+      endpoint: "${AZURE_OPENAI_ENDPOINT}"
+      api_version: "${AZURE_OPENAI_API_VERSION:2023-05-15}"
+    priority: 3
+    enabled: false
+    max_requests_per_minute: 60
+    max_tokens_per_minute: 40000
+    fallback_providers: ["openai", "anthropic"]
+
+  # AWS Bedrock Configuration (Future)
+  aws_bedrock:
+    config:
+      region: "${AWS_REGION:us-east-1}"
+      access_key_id: "${AWS_ACCESS_KEY_ID}"
+      secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+    priority: 2
+    enabled: false
+    max_requests_per_minute: 50
+    max_tokens_per_minute: 30000
+    fallback_providers: ["openai", "anthropic"]
+
+  # HuggingFace Configuration (Future)
+  huggingface:
+    config:
+      api_key: "${HUGGINGFACE_API_KEY}"
+      base_url: "${HUGGINGFACE_BASE_URL:https://api-inference.huggingface.co}"
+    priority: 1
+    enabled: false
+    max_requests_per_minute: 30
+    max_tokens_per_minute: 20000
+    fallback_providers: ["openai", "anthropic", "ollama"]
+
+# Default Model Selection Criteria
+default_selection_criteria:
+  # Prefer local models for privacy and cost
+  prefer_local: false
+  
+  # Maximum cost per 1K tokens (USD)
+  max_cost_per_1k_tokens: 0.1
+  
+  # Minimum context length required
+  min_context_length: 4096
+  
+  # Required capabilities
+  required_capabilities:
+    - "chat_completion"
+  
+  # Preferred providers (in order)
+  preferred_providers:
+    - "openai"
+    - "anthropic"
+    - "ollama"
+  
+  # Providers to exclude
+  exclude_providers: []
+  
+  # Require streaming support
+  require_streaming: false
+
+# Model-specific overrides
+model_overrides:
+  # Override settings for specific models
+  "gpt-4":
+    max_cost_per_1k_tokens: 0.15
+    priority_boost: 1
+  
+  "claude-3-opus":
+    max_cost_per_1k_tokens: 0.15
+    priority_boost: 1
+  
+  "llama2":
+    prefer_local: true
+    priority_boost: 2
+
+# Performance and Monitoring Settings
+performance:
+  # Enable detailed usage tracking
+  track_usage: true
+  
+  # Enable cost tracking
+  track_costs: true
+  
+  # Enable latency tracking
+  track_latency: true
+  
+  # Log level for LLM operations
+  log_level: "INFO"
+  
+  # Health check interval (seconds)
+  health_check_interval: 300
+  
+  # Timeout for provider initialization (seconds)
+  init_timeout: 30
+  
+  # Timeout for individual requests (seconds)
+  request_timeout: 60
+
+# Local Model Management (Ollama)
+ollama:
+  # Auto-pull models if not available
+  auto_pull_models: true
+  
+  # Preferred local models to keep available
+  preferred_models:
+    - "llama2"
+    - "codellama"
+    - "mistral"
+    - "neural-chat"
+  
+  # Model pulling timeout (seconds)
+  pull_timeout: 600
+  
+  # GPU memory fraction to use
+  gpu_memory_fraction: 0.8
+  
+  # Number of GPU layers to offload
+  gpu_layers: -1  # -1 for auto
+  
+  # Context window size for local models
+  context_size: 4096
+  
+  # Batch size for local inference
+  batch_size: 1
+
+# Provider-specific model preferences
+provider_preferences:
+  openai:
+    # Default to GPT-3.5 Turbo for cost efficiency
+    default_model: "gpt-3.5-turbo"
+    
+    # Preferred models by use case
+    models:
+      general: "gpt-3.5-turbo"
+      complex: "gpt-4-turbo-preview"
+      code: "gpt-4"
+      creative: "gpt-4"
+  
+  anthropic:
+    default_model: "claude-3-sonnet-20240229"
+    models:
+      general: "claude-3-haiku-20240307"
+      complex: "claude-3-opus-20240229"
+      code: "claude-3-sonnet-20240229"
+      creative: "claude-3-opus-20240229"
+  
+  ollama:
+    default_model: "llama2"
+    models:
+      general: "llama2"
+      complex: "llama2:13b"
+      code: "codellama"
+      creative: "mistral"
+
+# Fallback Configuration
+fallback:
+  # Maximum number of fallback attempts
+  max_attempts: 3
+  
+  # Delay between fallback attempts (seconds)
+  retry_delay: 1
+  
+  # Exponential backoff multiplier
+  backoff_multiplier: 2
+  
+  # Maximum retry delay (seconds)
+  max_retry_delay: 30
+  
+  # Fallback to local models if cloud providers fail
+  fallback_to_local: true
+  
+  # Enable graceful degradation
+  graceful_degradation: true
+
+# Security Settings
+security:
+  # Sanitize inputs
+  sanitize_inputs: true
+  
+  # Maximum input length
+  max_input_length: 100000
+  
+  # Blocked content patterns
+  blocked_patterns:
+    - "(?i)api[_-]?key"
+    - "(?i)secret"
+    - "(?i)password"
+    - "(?i)token"
+  
+  # Enable audit logging
+  audit_logging: true
+  
+  # Encrypt stored conversations
+  encrypt_conversations: true

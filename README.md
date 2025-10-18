@@ -12,6 +12,15 @@ CollegiumAI is a state-of-the-art AI Multi-Agent Collaborative Framework designe
 - **Personalized Services**: Tailored experiences for diverse university personas
 - **Adaptive Learning**: Continuous improvement through machine learning
 
+### 🧠 Multi-Provider LLM Framework
+- **OpenAI Integration**: GPT-4, GPT-3.5 Turbo support with intelligent routing
+- **Anthropic Claude**: Advanced reasoning capabilities with Claude-3 models
+- **Local Model Support**: Privacy-focused AI with Ollama integration (Llama2, CodeLlama, etc.)
+- **Intelligent Selection**: Automatic model routing based on cost, capabilities, and requirements
+- **Cost Optimization**: Budget-aware model selection and usage tracking
+- **Streaming Support**: Real-time content generation for interactive experiences
+- **Educational Focus**: Optimized configurations for academic advising, tutoring, and research
+
 ### 🔗 Blockchain Integration
 - **Credential Verification**: Immutable digital certificates and diplomas
 - **Governance Compliance**: Transparent audit trails and compliance tracking
@@ -232,6 +241,47 @@ response = advisor.process_query({
     "context": {"major": "Computer Science", "year": "sophomore"}
 })
 ```
+
+### Multi-Provider LLM Usage
+
+```python
+import asyncio
+from framework.llm import LLMManager, create_chat_request, create_user_message, ModelSelection, ModelCapability
+
+async def main():
+    # Initialize LLM manager with multiple providers
+    llm_manager = LLMManager()
+    await llm_manager.initialize()
+    
+    # Academic advising with cost optimization
+    cost_optimized = ModelSelection(
+        max_cost_per_1k_tokens=0.01,
+        required_capabilities=[ModelCapability.CHAT_COMPLETION]
+    )
+    
+    messages = [create_user_message("What courses should I take for AI specialization?")]
+    request = create_chat_request(messages=messages)
+    response = await llm_manager.generate_completion(request, cost_optimized)
+    
+    print(f"Advice from {response.provider.value}: {response.content}")
+    
+    # Privacy-focused tutoring with local models
+    local_selection = ModelSelection(
+        prefer_local=True,  # Uses Ollama models
+        required_capabilities=[ModelCapability.CHAT_COMPLETION]
+    )
+    
+    tutoring_request = create_chat_request([
+        create_user_message("Explain machine learning algorithms in simple terms")
+    ])
+    
+    local_response = await llm_manager.generate_completion(tutoring_request, local_selection)
+    print(f"Private tutoring from {local_response.model}: {local_response.content}")
+
+asyncio.run(main())
+```
+
+For detailed LLM framework documentation, see [LLM Quick Start Guide](docs/LLM_QUICKSTART.md).
 
 ## Bologna Process Usage Examples
 
