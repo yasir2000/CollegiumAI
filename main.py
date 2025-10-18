@@ -21,7 +21,7 @@ from framework.cognitive import (
     CognitivePersonaFactory, PersonaType, 
     CognitiveEngine, PersonaCognitiveAgent
 )
-from multi_agent_system import MultiAgentOrchestrator, AutonomousAgent, AgentRole
+from multi_agent_system import MultiAgentOrchestrator, AutonomousAgent
 from cognitive_architecture_demo import CognitiveArchitectureDemo
 from comprehensive_test_suite import CollegiumAITestSuite
 
@@ -63,7 +63,9 @@ class CollegiumAI:
     
     def __init__(self):
         self.persona_factory = CognitivePersonaFactory()
-        self.multi_agent_system = MultiAgentOrchestrator()
+        # Create mock client for the main system
+        mock_client = MockOllamaClient()
+        self.multi_agent_system = MultiAgentOrchestrator(mock_client)
         self.cognitive_demo = CognitiveArchitectureDemo()
         self.active_personas = {}
         self.session_history = []
