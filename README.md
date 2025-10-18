@@ -1,3 +1,5 @@
+<img width="342" height="340" alt="image" src="https://github.com/user-attachments/assets/e04172af-0707-4f31-97d8-4bf4497dd774" />
+
 # CollegiumAI 🎓
 
 **The Next-Generation Intelligent University Assistant**
