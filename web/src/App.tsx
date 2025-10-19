@@ -1,120 +1,104 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Box, CircularProgress } from '@mui/material';
-import { RootState, AppDispatch } from './store';
-import { getCurrentUser } from './store/features/auth/authSlice';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline, Box } from '@mui/material';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-// Layout components
-import DashboardLayout from './components/layout/DashboardLayout';
-import AuthLayout from './components/layout/AuthLayout';
+// Import components - We'll create these
+import Navigation from './components/Navigation/Navigation';
+import Dashboard from './pages/Dashboard/Dashboard';
+import PersonaGallery from './pages/PersonaGallery/PersonaGallery';
+import ChatInterface from './pages/ChatInterface/ChatInterface';
+import MultiAgentWorkspace from './pages/MultiAgentWorkspace/MultiAgentWorkspace';
+import CognitiveMonitor from './pages/CognitiveMonitor/CognitiveMonitor';
+import UniversitySystems from './pages/UniversitySystems/UniversitySystems';
+import PerformanceAnalytics from './pages/PerformanceAnalytics/PerformanceAnalytics';
+import SystemStatus from './components/SystemStatus/SystemStatus';
 
-// Page components
-import LoginPage from './pages/auth/LoginPage';
-import DashboardPage from './pages/dashboard/DashboardPage';
-import AgentsPage from './pages/agents/AgentsPage';
-import BlockchainPage from './pages/blockchain/BlockchainPage';
-import GovernancePage from './pages/governance/GovernancePage';
-import StudentsPage from './pages/students/StudentsPage';
-import FacultyPage from './pages/faculty/FacultyPage';
-import CredentialsPage from './pages/credentials/CredentialsPage';
-import BolognaProcessPage from './pages/bologna/BolognaProcessPage';
-import SettingsPage from './pages/settings/SettingsPage';
-import ProfilePage from './pages/profile/ProfilePage';
+// Create theme for CollegiumAI
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+    },
+    secondary: {
+      main: '#dc004e',
+      light: '#ff5983',
+      dark: '#9a0036',
+    },
+    background: {
+      default: '#f5f5f5',
+      paper: '#ffffff',
+    },
+  },
+  typography: {
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+      fontSize: '2.5rem',
+      fontWeight: 600,
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 600,
+    },
+    h3: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          borderRadius: 12,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          borderRadius: 8,
+          fontWeight: 500,
+        },
+      },
+    },
+  },
+});
 
-// Protected Route component
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-}
-
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { isAuthenticated, isLoading } = useSelector((state: RootState) => state.auth);
-
-  if (isLoading) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
-};
-
-const App: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { isAuthenticated, token, isLoading } = useSelector((state: RootState) => state.auth);
-
-  useEffect(() => {
-    // Check if user is already authenticated on app load
-    if (token && !isAuthenticated) {
-      dispatch(getCurrentUser());
-    }
-  }, [dispatch, token, isAuthenticated]);
-
-  if (isLoading) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
-      >
-        <CircularProgress size={60} />
-      </Box>
-    );
-  }
-
+function App() {
   return (
-    <Routes>
-      {/* Public routes */}
-      <Route
-        path="/login"
-        element={
-          isAuthenticated ? (
-            <Navigate to="/dashboard" replace />
-          ) : (
-            <AuthLayout>
-              <LoginPage />
-            </AuthLayout>
-          )
-        }
-      />
-
-      {/* Protected routes */}
-      <Route
-        path="/*"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Navigation />
+            <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
               <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/agents" element={<AgentsPage />} />
-                <Route path="/blockchain" element={<BlockchainPage />} />
-                <Route path="/governance" element={<GovernancePage />} />
-                <Route path="/students" element={<StudentsPage />} />
-                <Route path="/faculty" element={<FacultyPage />} />
-                <Route path="/credentials" element={<CredentialsPage />} />
-                <Route path="/bologna-process" element={<BolognaProcessPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/personas" element={<PersonaGallery />} />
+                <Route path="/chat" element={<ChatInterface />} />
+                <Route path="/multi-agent" element={<MultiAgentWorkspace />} />
+                <Route path="/cognitive" element={<CognitiveMonitor />} />
+                <Route path="/university" element={<UniversitySystems />} />
+                <Route path="/analytics" element={<PerformanceAnalytics />} />
               </Routes>
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
-      />
-
-      {/* Fallback redirect */}
-      <Route path="*" element={<Navigate to="/login" replace />} />
-    </Routes>
+            </Box>
+            <SystemStatus />
+          </Box>
+        </Router>
+      </ThemeProvider>
+    </Provider>
   );
-};
+}
 
 export default App;
