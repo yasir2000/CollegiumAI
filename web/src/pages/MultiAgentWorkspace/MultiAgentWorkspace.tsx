@@ -68,6 +68,7 @@ import {
 
 import WorkflowDesigner from '../../components/WorkflowDesigner/WorkflowDesigner';
 import CommunicationHub from '../../components/CommunicationHub/CommunicationHub';
+import AnalyticsDashboard from '../../components/AnalyticsDashboard/AnalyticsDashboard';
 
 interface TabPanelProps {
   children?: React.ReactNode;
