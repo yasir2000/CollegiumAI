@@ -539,6 +539,238 @@ ENABLE_MULTI_AGENT = True
   "cognitive_parameters": {
     "default_confidence_threshold": 0.6,
     "learning_rate": 0.01,
+    "max_memory_size": 1000,
+    "attention_threshold": 0.3
+  },
+  "multi_agent": {
+    "max_agents": 10,
+    "coordination_timeout": 30,
+    "enable_shared_memory": true
+  },
+  "blockchain": {
+    "network_url": "http://localhost:8545",
+    "enabled": false
+  }
+}
+```
+
+## 🚀 Deployment
+
+### Development Environment
+```bash
+# 1. Start Backend Server
+python api/server.py
+# ✅ Running at http://localhost:4000
+
+# 2. Start Frontend Development Server  
+cd web && npm start
+# ✅ Running at http://localhost:3000
+
+# 3. Access Application
+open http://localhost:3000
+```
+
+### Production Deployment (Docker)
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build manually
+docker build -t collegiumai-web ./web
+docker build -t collegiumai-api ./api
+docker run -p 3000:3000 collegiumai-web
+docker run -p 4000:4000 collegiumai-api
+```
+
+### Environment Variables
+```bash
+# Production settings
+NODE_ENV=production
+REACT_APP_API_BASE_URL=https://api.collegiumai.com
+API_HOST=0.0.0.0
+API_PORT=4000
+CORS_ORIGINS=["https://collegiumai.com"]
+```
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### **Port Already in Use**
+```bash
+# Kill process on port 3000 (React)
+npx kill-port 3000
+
+# Kill process on port 4000 (FastAPI)
+npx kill-port 4000
+
+# Or use system commands
+# Windows: taskkill /PID <PID> /F
+# macOS/Linux: kill -9 <PID>
+```
+
+#### **MetaMask Connection Errors**
+- **Issue**: `Failed to connect to MetaMask` errors in browser console
+- **Solution**: MetaMask integration is optional. The error is handled gracefully.
+- **Disable**: Set `blockchain.enabled = false` in configuration
+
+#### **Module Import Errors**
+```bash
+# Reinstall Python dependencies
+pip install -r requirements.txt
+
+# Reinstall Node dependencies
+cd web && npm install
+
+# Clear npm cache
+npm cache clean --force
+```
+
+#### **API Connection Issues**
+- Ensure both servers are running on correct ports
+- Check CORS configuration in `api/server.py`
+- Verify firewall settings allow local connections
+
+### Performance Optimization
+
+#### **Frontend Optimization**
+```bash
+# Build production optimized bundle
+cd web && npm run build
+
+# Analyze bundle size
+npm run analyze
+
+# Enable service worker for caching
+# Modify public/index.html
+```
+
+#### **Backend Optimization**
+```python
+# Enable production settings in api/server.py
+ENVIRONMENT = "production"
+DEBUG = False
+WORKERS = 4  # Multiple worker processes
+```
+
+## 🧪 Testing
+
+### Automated Testing
+```bash
+# Run all tests
+python comprehensive_test_suite.py
+
+# Test web application connectivity
+python quick_webapp_test.py
+
+# Test API endpoints
+python test_integrations.py
+
+# Frontend tests
+cd web && npm test
+
+# Backend tests
+pytest api/tests/
+```
+
+### Manual Testing Checklist
+- [ ] Web application loads at http://localhost:3000
+- [ ] API documentation accessible at http://localhost:4000/docs
+- [ ] Persona gallery displays all 51+ personas
+- [ ] Chat interface responds to messages
+- [ ] Multi-agent workspace shows agent coordination
+- [ ] System status displays real-time metrics
+- [ ] Navigation between pages works smoothly
+
+## 📋 Development Roadmap
+
+### ✅ Completed (v1.0)
+- [x] Comprehensive web application with React + TypeScript
+- [x] FastAPI backend with automatic documentation
+- [x] 51+ university personas with cognitive profiles
+- [x] Multi-agent collaboration system
+- [x] Real-time system monitoring
+- [x] Redux state management
+- [x] Material-UI responsive design
+- [x] WebSocket integration foundation
+
+### 🔄 In Progress (v1.1)
+- [ ] Advanced blockchain credential management
+- [ ] Bologna Process compliance automation
+- [ ] Enhanced multi-agent visualization
+- [ ] Advanced cognitive insights dashboard
+- [ ] User authentication and authorization
+- [ ] Database integration for persistent storage
+
+### 🎯 Planned (v1.2+)
+- [ ] Mobile application (React Native)
+- [ ] Advanced analytics and reporting
+- [ ] Machine learning model integration
+- [ ] Third-party LMS integrations
+- [ ] Advanced governance compliance tools
+- [ ] Enterprise deployment features
+
+## 🤝 Contributing
+
+We welcome contributions from developers, educators, and AI researchers!
+
+### Development Setup
+```bash
+# Fork and clone the repository
+git clone https://github.com/YOUR_USERNAME/CollegiumAI.git
+cd CollegiumAI
+
+# Create development branch
+git checkout -b feature/your-feature-name
+
+# Install dependencies
+pip install -r requirements.txt
+cd web && npm install && cd ..
+
+# Start development servers
+python api/server.py  # Terminal 1
+cd web && npm start   # Terminal 2
+```
+
+### Contribution Guidelines
+1. **Code Style**: Follow PEP 8 for Python, ESLint/Prettier for TypeScript
+2. **Testing**: Add tests for new features
+3. **Documentation**: Update relevant documentation
+4. **Commit Messages**: Use conventional commit format
+5. **Pull Requests**: Provide clear description and link issues
+
+### Areas for Contribution
+- 🧠 **Cognitive Architecture**: Enhance reasoning and learning systems
+- 🎨 **UI/UX Design**: Improve user interface and experience
+- ⛓️ **Blockchain Integration**: Expand smart contract functionality
+- 📊 **Analytics**: Add advanced reporting and visualization
+- 🔒 **Security**: Implement authentication and authorization
+- 🌐 **Internationalization**: Add multi-language support
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Support & Contact
+
+- **GitHub Issues**: [Report bugs and feature requests](https://github.com/yasir2000/CollegiumAI/issues)
+- **Discussions**: [Community discussions and Q&A](https://github.com/yasir2000/CollegiumAI/discussions)
+- **Documentation**: [Comprehensive docs in `/docs` folder](./docs/)
+- **API Reference**: [Live API docs at localhost:4000/docs](http://localhost:4000/docs)
+
+## 🙏 Acknowledgments
+
+- **Cognitive Science Community**: For foundational research in cognitive architectures
+- **Open Source Contributors**: React, FastAPI, Material-UI, and countless other projects
+- **Educational Technology Researchers**: For insights into digital learning platforms
+- **Blockchain Community**: For standards and tools enabling credential verification
+
+---
+
+**Made with ❤️ for the future of intelligent education**
+
+*CollegiumAI - Empowering universities with AI-driven intelligence*
+    "learning_rate": 0.01,
     "attention_decay_rate": 0.95
   },
   "persona_preferences": {

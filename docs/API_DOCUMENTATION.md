@@ -1,33 +1,74 @@
-# CollegiumAI API Documentation
+# CollegiumAI API Documentation 🚀
 
-Version: 1.0.0  
-Last Updated: October 19, 2025
+**Version**: 1.0.0  
+**Last Updated**: October 19, 2025  
+**Status**: 🟢 **LIVE & OPERATIONAL**
+
+## 🌐 **Live API Access**
+
+- **Base URL**: http://localhost:4000
+- **Interactive Docs**: http://localhost:4000/docs
+- **Health Check**: http://localhost:4000/health
+- **WebSocket**: ws://localhost:4000/ws
+
+---
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-- [Core APIs](#core-apis)
-- [Cognitive Engine API](#cognitive-engine-api)
-- [Persona System API](#persona-system-api)
-- [Multi-Agent API](#multi-agent-api)
-- [Configuration API](#configuration-api)
-- [Error Handling](#error-handling)
-- [Examples](#examples)
-- [SDK and Client Libraries](#sdk-and-client-libraries)
+- [🚀 Quick Start](#quick-start)
+- [🌐 Web API Endpoints](#web-api-endpoints)
+- [🧠 Cognitive Engine API](#cognitive-engine-api)
+- [👥 Persona System API](#persona-system-api)
+- [🤖 Multi-Agent API](#multi-agent-api)
+- [⛓️ Blockchain API](#blockchain-api)
+- [📊 System Monitoring API](#system-monitoring-api)
+- [🔌 WebSocket API](#websocket-api)
+- [⚠️ Error Handling](#error-handling)
+- [💡 Examples](#examples)
+- [📚 SDK and Client Libraries](#sdk-and-client-libraries)
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- CollegiumAI backend running on http://localhost:4000
+- Basic understanding of REST APIs
+
+### Making Your First Request
+
+```bash
+# Health check
+curl http://localhost:4000/health
+
+# Get system status
+curl http://localhost:4000/api/system/status
+
+# Query an AI agent
+curl -X POST http://localhost:4000/api/agents/query \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hello, I need academic help", "persona": "undergraduate_student"}'
+```
+
+### Interactive API Exploration
+Visit http://localhost:4000/docs for a comprehensive, interactive API documentation interface powered by FastAPI's automatic OpenAPI generation.
 
 ---
 
 ## Overview
 
-The CollegiumAI API provides programmatic access to the advanced cognitive architecture and university intelligence capabilities. The API is designed for developers who want to integrate CollegiumAI's capabilities into their applications, services, or research projects.
+The CollegiumAI API provides programmatic access to the advanced cognitive architecture and university intelligence capabilities. Built with FastAPI, it offers high-performance, type-safe endpoints with automatic documentation.
 
-### Key Features
+### 🌟 Key Features
+- **Modern FastAPI Framework**: High-performance async API with automatic docs
 - **Cognitive Processing**: Advanced multi-modal cognitive processing
-- **Persona Intelligence**: Access to 51+ university personas
+- **Persona Intelligence**: Access to 51+ university personas with cognitive profiles
 - **Multi-Agent Coordination**: Collaborative AI agent orchestration
-- **Real-time Processing**: Async/await support for responsive applications
-- **Comprehensive Testing**: Built-in validation and testing frameworks
+- **Real-time Communication**: WebSocket support for live interactions
+- **Blockchain Integration**: Digital credential management and verification
+- **Comprehensive Monitoring**: System health and performance metrics
+- **Type Safety**: Full Pydantic model validation
+- **Auto-generated Documentation**: Interactive OpenAPI/Swagger interface
 
 ### API Principles
 - **Async-First**: All operations are asynchronous for optimal performance
