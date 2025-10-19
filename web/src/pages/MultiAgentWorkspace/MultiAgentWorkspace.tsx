@@ -13,11 +13,6 @@ import {
   Tab,
   Tabs,
   Paper,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  ListItemSecondaryAction,
   IconButton,
   Dialog,
   DialogTitle,
@@ -62,7 +57,7 @@ import {
   School as SchoolIcon,
   Security as SecurityIcon,
   Visibility as VisibilityIcon,
-  Share as ShareIcon,
+
   Hub as HubIcon
 } from '@mui/icons-material';
 
@@ -134,13 +129,11 @@ const MultiAgentWorkspace: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [openAgentDialog, setOpenAgentDialog] = useState(false);
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
   const [newAgentType, setNewAgentType] = useState('');
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [realTimeEnabled, setRealTimeEnabled] = useState(true);
 
   // Mock data for agents
-  const [agents, setAgents] = useState<Agent[]>([
+  const [agents] = useState<Agent[]>([
     {
       id: 'agent-001',
       name: 'Alpha Research Agent',
@@ -223,7 +216,7 @@ const MultiAgentWorkspace: React.FC = () => {
   ]);
 
   // Mock tasks data
-  const [tasks, setTasks] = useState<Task[]>([
+  const [tasks] = useState<Task[]>([
     {
       id: 'task-001',
       title: 'Multi-Agent Framework Enhancement',
@@ -263,7 +256,7 @@ const MultiAgentWorkspace: React.FC = () => {
   ]);
 
   // Mock communications data
-  const [communications, setCommunications] = useState<Communication[]>([
+  const [communications] = useState<Communication[]>([
     {
       id: 'comm-001',
       fromAgent: 'agent-001',
@@ -451,7 +444,7 @@ const MultiAgentWorkspace: React.FC = () => {
                         />
                         <Chip label={agent.type} size="small" variant="outlined" />
                       </Box>
-                      <IconButton onClick={() => setSelectedAgent(agent)}>
+                      <IconButton onClick={() => console.log('Configure agent:', agent.name)}>
                         <SettingsIcon />
                       </IconButton>
                     </Box>
@@ -631,59 +624,7 @@ const MultiAgentWorkspace: React.FC = () => {
 
         {/* Analytics Tab */}
         <TabPanel value={tabValue} index={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    Agent Performance Metrics
-                  </Typography>
-                  {agents.map((agent) => (
-                    <Box key={agent.id} sx={{ mb: 2 }}>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                        <Typography variant="body2">{agent.name}</Typography>
-                        <Typography variant="body2">{agent.performance}%</Typography>
-                      </Box>
-                      <LinearProgress
-                        variant="determinate"
-                        value={agent.performance}
-                        sx={{ height: 8, borderRadius: 4 }}
-                      />
-                    </Box>
-                  ))}
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    System Resources
-                  </Typography>
-                  <Box sx={{ mb: 2 }}>
-                    <Typography variant="body2" gutterBottom>
-                      Memory Usage: {Math.round(agents.reduce((acc, agent) => acc + agent.memory, 0) / agents.length)}%
-                    </Typography>
-                    <LinearProgress
-                      variant="determinate"
-                      value={Math.round(agents.reduce((acc, agent) => acc + agent.memory, 0) / agents.length)}
-                      sx={{ height: 8, borderRadius: 4, mb: 2 }}
-                    />
-                  </Box>
-                  <Box sx={{ mb: 2 }}>
-                    <Typography variant="body2" gutterBottom>
-                      Processing Power: {Math.round(agents.reduce((acc, agent) => acc + agent.processing, 0) / agents.length)}%
-                    </Typography>
-                    <LinearProgress
-                      variant="determinate"
-                      value={Math.round(agents.reduce((acc, agent) => acc + agent.processing, 0) / agents.length)}
-                      sx={{ height: 8, borderRadius: 4 }}
-                    />
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+          <AnalyticsDashboard />
         </TabPanel>
 
         {/* Workflows Tab */}
