@@ -13,6 +13,32 @@ from .attention import AttentionMechanism, AttentionType, FocusState, AttentionT
 from .metacognition import MetacognitiveController, MetacognitiveState, MetacognitiveStrategy, MetacognitiveInsight
 from .persona_cognition import PersonaCognitiveAgent, PersonaType, CognitivePersonaFactory
 
+# Advanced insights dashboard components
+from .insights_dashboard import (
+    CognitiveInsightsDashboard,
+    MemorySystemAnalyzer,
+    AttentionAnalyzer,
+    LearningProgressAnalyzer,
+    DecisionAnalyzer,
+    CognitiveLoadMonitor,
+    
+    # Data structures
+    MemoryItem,
+    AttentionFocus,
+    LearningEvent,
+    DecisionEvent,
+    CognitiveLoad,
+    
+    # Enums
+    MemoryType,
+    AttentionType,
+    CognitiveState as InsightsCognitiveState,
+    DecisionType as InsightsDecisionType,
+    
+    # Utilities
+    create_sample_cognitive_data
+)
+
 __all__ = [
     # Core cognitive engine
     'CognitiveEngine',
@@ -65,5 +91,28 @@ __all__ = [
     # Persona-specific cognitive agents
     'PersonaCognitiveAgent',
     'PersonaType',
-    'CognitivePersonaFactory'
+    'CognitivePersonaFactory',
+    
+    # Advanced insights dashboard
+    'CognitiveInsightsDashboard',
+    'MemorySystemAnalyzer',
+    'AttentionAnalyzer', 
+    'LearningProgressAnalyzer',
+    'DecisionAnalyzer',
+    'CognitiveLoadMonitor',
+    
+    # Data structures
+    'MemoryItem',
+    'AttentionFocus',
+    'LearningEvent',
+    'DecisionEvent',
+    'CognitiveLoad',
+    
+    # Enums (with aliases to avoid conflicts)
+    'MemoryType',
+    'InsightsCognitiveState',
+    'InsightsDecisionType',
+    
+    # Utilities
+    'create_sample_cognitive_data'
 ]
