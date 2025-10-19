@@ -1,5 +1,24 @@
 <img width="242" height="240" alt="image" src="https://github.com/user-attachments/assets/e04172af-0707-4f31-97d8-4bf4497dd774" />
 
+<div align="center">
+
+### 🌟 **CollegiumAI: The Future of Intelligent Education** 🌟
+
+**🧠 Advanced Cognitive Architecture • 🤖 Multi-Agent Collaboration • ⛓️ Blockchain Credentials • 🎓 Bologna Process Compliance**
+
+*Empowering 10,000+ students, faculty, and staff across 50+ institutions worldwide*
+
+[![⭐ Star us on GitHub](https://img.shields.io/github/stars/yasir2000/CollegiumAI?style=social)](https://github.com/yasir2000/CollegiumAI)
+[![🍴 Fork the Project](https://img.shields.io/github/forks/yasir2000/CollegiumAI?style=social)](https://github.com/yasir2000/CollegiumAI/fork)
+[![📝 Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/yasir2000/CollegiumAI/blob/main/CONTRIBUTING.md)
+[![📄 License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Built with ❤️ for the global academic community by [@yasir2000](https://github.com/yasir2000)**
+
+*"Democratizing access to intelligent, personalized educational support through cutting-edge AI"*
+
+</div>
+
 # CollegiumAI 🎓
 
 **The Next-Generation Intelligent University Assistant**
@@ -1822,21 +1841,4 @@ CollegiumAI aims to democratize access to intelligent, personalized educational 
 
 ---
 
-<div align="center">
 
-### 🌟 **CollegiumAI: The Future of Intelligent Education** 🌟
-
-**🧠 Advanced Cognitive Architecture • 🤖 Multi-Agent Collaboration • ⛓️ Blockchain Credentials • 🎓 Bologna Process Compliance**
-
-*Empowering 10,000+ students, faculty, and staff across 50+ institutions worldwide*
-
-[![⭐ Star us on GitHub](https://img.shields.io/github/stars/yasir2000/CollegiumAI?style=social)](https://github.com/yasir2000/CollegiumAI)
-[![🍴 Fork the Project](https://img.shields.io/github/forks/yasir2000/CollegiumAI?style=social)](https://github.com/yasir2000/CollegiumAI/fork)
-[![📝 Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/yasir2000/CollegiumAI/blob/main/CONTRIBUTING.md)
-[![📄 License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-**Built with ❤️ for the global academic community by [@yasir2000](https://github.com/yasir2000)**
-
-*"Democratizing access to intelligent, personalized educational support through cutting-edge AI"*
-
-</div>
