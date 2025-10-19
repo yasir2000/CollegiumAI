@@ -130,6 +130,8 @@ CollegiumAI is a comprehensive AI-powered digital university platform that combi
 - **Faculty Development**: Curriculum design, pedagogical innovation, research collaboration
 - **Career Advancement**: Professional development, networking, skill building
 <img width="1361" height="613" alt="image" src="https://github.com/user-attachments/assets/bd47a987-fd0c-4e3c-a3fe-94f2f88bddba" />
+<img width="1355" height="610" alt="image" src="https://github.com/user-attachments/assets/b4369c0a-ec6c-403c-88a4-d0e5f3d1ba05" />
+
 
 ## 🚀 Quick Start
 
