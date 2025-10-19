@@ -35,6 +35,7 @@ CollegiumAI is a sophisticated AI-powered platform that provides personalized, i
 - **Administrative Efficiency**: Enrollment processes, documentation, policy guidance
 - **Faculty Development**: Curriculum design, pedagogical innovation, research collaboration
 - **Career Advancement**: Professional development, networking, skill building
+<img width="1361" height="613" alt="image" src="https://github.com/user-attachments/assets/bd47a987-fd0c-4e3c-a3fe-94f2f88bddba" />
 
 ## 🚀 Quick Start
 
