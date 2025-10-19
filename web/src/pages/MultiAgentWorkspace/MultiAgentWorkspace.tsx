@@ -67,6 +67,7 @@ import {
 } from '@mui/icons-material';
 
 import WorkflowDesigner from '../../components/WorkflowDesigner/WorkflowDesigner';
+import CommunicationHub from '../../components/CommunicationHub/CommunicationHub';
 
 interface TabPanelProps {
   children?: React.ReactNode;
