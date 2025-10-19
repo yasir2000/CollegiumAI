@@ -1,6 +1,21 @@
 """
-CollegiumAI In-Memory Database Service
-Instant database functionality without external dependencies
+CollegiumAI Database Package
+===========================
+
+Advanced database integration layer providing PostgreSQL support,
+connection pooling, transaction management, and comprehensive
+data models for the CollegiumAI platform.
+
+Features:
+- Async PostgreSQL support with connection pooling
+- Comprehensive data models for all system entities
+- Database initialization and migration system
+- High-level service layer for common operations
+- Audit logging and analytics support
+- Bologna Process compliance tracking
+- Multi-agent system data persistence
+- Cognitive architecture memory storage
+- Fallback to in-memory database for development
 """
 
 import asyncio
@@ -10,6 +25,14 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime, timedelta
 from collections import defaultdict
 import uuid
+
+# Import advanced database components
+try:
+    from .service import DatabaseService, DatabaseConfig, get_database_service, close_database_service
+    from .init import DatabaseInitializer, initialize_database
+    POSTGRES_AVAILABLE = True
+except ImportError:
+    POSTGRES_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -197,20 +220,61 @@ class InMemoryDatabaseService:
             "cache_entries": len(self.cache)
         }
 
-# Global in-memory database service
+# Global database service management
 _db_service = None
+_postgres_service = None
 
-async def get_database_service() -> InMemoryDatabaseService:
-    """Get or create in-memory database service"""
-    global _db_service
+async def get_database_service():
+    """Get database service (PostgreSQL preferred, fallback to in-memory)"""
+    global _db_service, _postgres_service
+    
+    # Try PostgreSQL first if available
+    if POSTGRES_AVAILABLE and _postgres_service is None:
+        try:
+            from .service import get_database_service as get_postgres_service
+            _postgres_service = await get_postgres_service()
+            logger.info("✅ Using PostgreSQL database service")
+            return _postgres_service
+        except Exception as e:
+            logger.warning(f"Failed to initialize PostgreSQL, falling back to in-memory: {e}")
+    
+    # Fallback to in-memory database
     if _db_service is None:
         _db_service = InMemoryDatabaseService()
         await _db_service.connect()
-    return _db_service
+        logger.info("✅ Using in-memory database service")
+    
+    return _postgres_service if _postgres_service else _db_service
 
 async def close_database_service():
     """Close database service"""
-    global _db_service
+    global _db_service, _postgres_service
+    
+    if _postgres_service:
+        try:
+            from .service import close_database_service as close_postgres_service
+            await close_postgres_service()
+        except Exception as e:
+            logger.error(f"Error closing PostgreSQL service: {e}")
+        _postgres_service = None
+    
     if _db_service:
         await _db_service.disconnect()
         _db_service = None
+
+# Export appropriate interface based on availability
+if POSTGRES_AVAILABLE:
+    # Export PostgreSQL components
+    __all__ = [
+        'DatabaseService', 'DatabaseConfig', 'get_database_service', 'close_database_service',
+        'DatabaseInitializer', 'initialize_database', 'InMemoryDatabaseService'
+    ]
+else:
+    # Export in-memory components only
+    __all__ = [
+        'InMemoryDatabaseService', 'get_database_service', 'close_database_service'
+    ]
+
+# Version info
+__version__ = '1.0.0'
+__author__ = 'CollegiumAI Team'
