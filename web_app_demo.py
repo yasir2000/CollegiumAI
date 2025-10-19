@@ -24,7 +24,7 @@ def test_web_app_features():
     print("=" * 50)
     
     # Test API connectivity
-    api_base = "http://localhost:8080"
+    api_base = "http://localhost:4000"
     
     try:
         # Test health endpoint

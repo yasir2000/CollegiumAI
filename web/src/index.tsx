@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
-import { store } from './store';
+import { store } from './store/store';
 import './index.css';
 
 // Create a custom theme for CollegiumAI
