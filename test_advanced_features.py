@@ -176,7 +176,7 @@ class AdvancedFeaturesTestSuite:
             
             logger.info("📦 Blockchain imports successful")
             
-            # Test credential manager
+            # Test credential manager (skip blockchain config for testing)
             credential_manager = AdvancedCredentialManager()
             logger.info("⛓️  AdvancedCredentialManager initialized")
             

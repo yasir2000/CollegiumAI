@@ -191,6 +191,16 @@ class MemorySystemAnalyzer:
                     return memory
         return None
     
+    def analyze_memory_system(self, memory_items: List[MemoryItem]) -> Dict[str, Any]:
+        """Analyze memory system with provided memory items"""
+        
+        # Add all memory items to the analyzer
+        for memory_item in memory_items:
+            self.add_memory_item(memory_item)
+        
+        # Perform analysis
+        return self.analyze_memory_patterns()
+    
     def analyze_memory_patterns(self) -> Dict[str, Any]:
         """Analyze memory system patterns"""
         
@@ -235,6 +245,11 @@ class MemorySystemAnalyzer:
             for memory in all_memories:
                 consolidation_counts[memory.consolidation_status] += 1
             analysis["consolidation_status"] = dict(consolidation_counts)
+            
+            # Calculate consolidation efficiency
+            total_memories = len(all_memories)
+            consolidated = consolidation_counts.get("consolidated", 0)
+            analysis["consolidation_efficiency"] = consolidated / total_memories if total_memories > 0 else 0
         
         # Memory network analysis
         if self.memory_network:
@@ -365,8 +380,14 @@ class AttentionAnalyzer:
                 }
                 self.focus_switches.append(switch_event)
     
-    def analyze_attention_patterns(self) -> Dict[str, Any]:
+    def analyze_attention_patterns(self, attention_focuses: List[AttentionFocus] = None) -> Dict[str, Any]:
         """Analyze attention patterns"""
+        
+        # Use provided data or existing history
+        if attention_focuses:
+            # Process provided attention focuses
+            for focus in attention_focuses:
+                self.track_attention_focus(focus)
         
         if not self.attention_history:
             return {"error": "No attention data available"}
@@ -411,6 +432,13 @@ class AttentionAnalyzer:
             }
             for attention_type, intensities in type_distribution.items()
         }
+        
+        # Focus distribution (for test compatibility)
+        analysis["focus_distribution"] = analysis["focus_patterns"]
+        
+        # Attention stability (variance in intensity over time)
+        intensity_variance = np.var(intensities) if len(intensities) > 1 else 0
+        analysis["attention_stability"] = 1.0 / (1.0 + intensity_variance)  # Higher stability = lower variance
         
         # Distraction analysis
         distraction_counts = defaultdict(int)

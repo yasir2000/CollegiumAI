@@ -302,7 +302,7 @@ class BlockchainCredential(Base):
     bologna_data = Column(JSON, default=dict)
     
     # Metadata
-    metadata = Column(JSON, default=dict)
+    credential_metadata = Column(JSON, default=dict)
     
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow)
     updated_at = Column(DateTime(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -480,7 +480,7 @@ class AgentInteraction(Base):
     
     # Context
     context_data = Column(JSON, default=dict)
-    metadata = Column(JSON, default=dict)
+    interaction_metadata = Column(JSON, default=dict)
     
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow)
     
@@ -635,7 +635,7 @@ class SystemMetrics(Base):
     component = Column(String(100), nullable=True)  # which system component
     
     # Additional data
-    metadata = Column(JSON, default=dict)
+    metric_metadata = Column(JSON, default=dict)
     tags = Column(ARRAY(String), default=list)
     
     recorded_at = Column(DateTime(timezone=True), default=datetime.utcnow)
@@ -671,7 +671,7 @@ class AuditLog(Base):
     error_message = Column(Text, nullable=True)
     
     # Additional context
-    metadata = Column(JSON, default=dict)
+    audit_metadata = Column(JSON, default=dict)
     
     created_at = Column(DateTime(timezone=True), default=datetime.utcnow)
     

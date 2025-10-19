@@ -272,6 +272,15 @@ class NetworkTopologyAnalyzer:
             "influence_scores": self.influence_scores,
             "communication_patterns": self.communication_patterns
         }
+    
+    def analyze_network_topology(self, agents: List[AgentNode], communications: List[CommunicationEvent]) -> Dict[str, Any]:
+        """Analyze network topology and return metrics"""
+        
+        # Update the network topology first
+        self.update_network_topology(agents, communications)
+        
+        # Return the network metrics
+        return self.get_network_metrics()
 
 class PerformanceAnalyzer:
     """Analyzes agent and system performance metrics"""
@@ -1055,3 +1064,122 @@ def create_sample_communications(agents: List[AgentNode], count: int = 50) -> Li
         communications.append(comm)
     
     return communications
+
+class CollaborationAnalyzer:
+    """Analyzes collaboration patterns between agents"""
+    
+    def analyze_collaboration_patterns(
+        self, 
+        agents: List[AgentNode], 
+        communications: List[CommunicationEvent]
+    ) -> Dict[str, Any]:
+        """Analyze collaboration patterns between agents"""
+        
+        # Build collaboration matrix
+        agent_ids = [agent.agent_id for agent in agents]
+        collaboration_matrix = {}
+        
+        for agent_id in agent_ids:
+            collaboration_matrix[agent_id] = {}
+            for other_id in agent_ids:
+                collaboration_matrix[agent_id][other_id] = 0
+        
+        # Count communications
+        for comm in communications:
+            if comm.sender_id in agent_ids and comm.receiver_id in agent_ids:
+                collaboration_matrix[comm.sender_id][comm.receiver_id] += 1
+        
+        # Find collaboration clusters
+        clusters = self._find_collaboration_clusters(agents, communications)
+        
+        # Calculate communication patterns
+        patterns = self._analyze_communication_patterns(communications)
+        
+        return {
+            "collaboration_matrix": collaboration_matrix,
+            "collaboration_clusters": clusters,
+            "communication_patterns": patterns,
+            "total_collaborations": len(communications),
+            "unique_collaborators": len(set(
+                [comm.sender_id for comm in communications] + 
+                [comm.receiver_id for comm in communications]
+            ))
+        }
+    
+    def _find_collaboration_clusters(
+        self, 
+        agents: List[AgentNode], 
+        communications: List[CommunicationEvent]
+    ) -> List[Dict[str, Any]]:
+        """Find clusters of highly collaborating agents"""
+        
+        # Simple clustering based on communication frequency
+        clusters = []
+        agent_comm_count = {}
+        
+        for agent in agents:
+            agent_comm_count[agent.agent_id] = sum(
+                1 for comm in communications 
+                if comm.sender_id == agent.agent_id or comm.receiver_id == agent.agent_id
+            )
+        
+        # Group agents by communication activity level
+        high_activity = [aid for aid, count in agent_comm_count.items() if count > 5]
+        medium_activity = [aid for aid, count in agent_comm_count.items() if 2 <= count <= 5]
+        low_activity = [aid for aid, count in agent_comm_count.items() if count < 2]
+        
+        if high_activity:
+            clusters.append({
+                "cluster_id": "high_activity",
+                "agents": high_activity,
+                "activity_level": "high",
+                "size": len(high_activity)
+            })
+        
+        if medium_activity:
+            clusters.append({
+                "cluster_id": "medium_activity", 
+                "agents": medium_activity,
+                "activity_level": "medium",
+                "size": len(medium_activity)
+            })
+        
+        if low_activity:
+            clusters.append({
+                "cluster_id": "low_activity",
+                "agents": low_activity, 
+                "activity_level": "low",
+                "size": len(low_activity)
+            })
+        
+        return clusters
+    
+    def _analyze_communication_patterns(
+        self, 
+        communications: List[CommunicationEvent]
+    ) -> Dict[str, Any]:
+        """Analyze communication patterns"""
+        
+        if not communications:
+            return {}
+        
+        # Communication type distribution
+        type_counts = {}
+        for comm in communications:
+            comm_type = comm.communication_type.value
+            type_counts[comm_type] = type_counts.get(comm_type, 0) + 1
+        
+        # Response time analysis
+        response_times = [comm.response_time for comm in communications if comm.response_time is not None]
+        avg_response_time = sum(response_times) / len(response_times) if response_times else 0
+        
+        # Success rate
+        successful = sum(1 for comm in communications if comm.success)
+        success_rate = successful / len(communications) if communications else 0
+        
+        return {
+            "communication_types": type_counts,
+            "average_response_time": avg_response_time,
+            "success_rate": success_rate,
+            "total_communications": len(communications)
+        }
